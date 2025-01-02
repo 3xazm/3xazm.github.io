@@ -1,1 +1,29 @@
-const _0x37483a=_0x11e3;(function(_0x5b09a9,_0x4f8037){const _0x442824=_0x11e3,_0x298db8=_0x5b09a9();while(!![]){try{const _0x270d82=parseInt(_0x442824(0xf1))/0x1*(-parseInt(_0x442824(0xf2))/0x2)+-parseInt(_0x442824(0xc5))/0x3*(-parseInt(_0x442824(0xee))/0x4)+-parseInt(_0x442824(0xe1))/0x5*(-parseInt(_0x442824(0xd0))/0x6)+parseInt(_0x442824(0xed))/0x7+parseInt(_0x442824(0xd3))/0x8*(parseInt(_0x442824(0xde))/0x9)+-parseInt(_0x442824(0xdd))/0xa+-parseInt(_0x442824(0xca))/0xb;if(_0x270d82===_0x4f8037)break;else _0x298db8['push'](_0x298db8['shift']());}catch(_0x1e5c9a){_0x298db8['push'](_0x298db8['shift']());}}}(_0x2199,0xeee6a));const lotteryData=[{'date':_0x37483a(0xea),'mediodia':'33','tarde':'--','noche':'--'}],daySelector=document[_0x37483a(0xd5)](_0x37483a(0xe7)),monthSelector=document[_0x37483a(0xd5)](_0x37483a(0xdc)),searchButton=document[_0x37483a(0xd5)](_0x37483a(0xc9)),resultsDiv=document[_0x37483a(0xf0)]('.results');function init(){const _0x5587fb=_0x37483a,_0x510c61=0x1f;for(let _0x63017a=0x1;_0x63017a<=_0x510c61;_0x63017a++){const _0x4386e1=document[_0x5587fb(0xe2)]('option');_0x4386e1[_0x5587fb(0xd8)]=_0x63017a[_0x5587fb(0xce)]()[_0x5587fb(0xe9)](0x2,'0'),_0x4386e1[_0x5587fb(0xf5)]=_0x63017a,daySelector[_0x5587fb(0xe8)](_0x4386e1);}displayResults(lotteryData);}function _0x2199(){const _0x3d3d3c=['getElementById','location','noche','value','2025-','https://carlosw-sky.github.io/Historial/2023/','https://carlosw-sky.github.io/Historial/2021/','monthSelector','4531270tuBREJ','6451443RmObQL','https://carlosw-sky.github.io/Historial/2017/','URL\x20no\x20está\x20configurada\x20para\x20el\x20año\x20seleccionado.','535uPJzup','createElement','change','addEventListener','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','forEach','daySelector','appendChild','padStart','2025-01-02','https://carlosw-sky.github.io/Historial/2018/','<p>No\x20hay\x20resultados\x20disponibles.</p>','3455487eLsApB','4vSDlot','https://carlosw-sky.github.io','querySelector','1eEYexU','125026YiZoQt','innerHTML','tarde','textContent','https://carlosw-sky.github.io/Historial/2016/','3959889auWRXt','https://carlosw-sky.github.io/Historial/2022/','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><strong>','href','searchButton','31739697OVAvtu','https://carlosw-sky.github.io/Historial/2024/','https://carlosw-sky.github.io/Historial/2020/','date','toString','split','103692HLxYmq','</strong></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>Mediodía:\x20','https://carlosw-sky.github.io/Historial/2013/','8foebzr','click'];_0x2199=function(){return _0x3d3d3c;};return _0x2199();}function _0x11e3(_0x25180e,_0xc462dc){const _0x2199af=_0x2199();return _0x11e3=function(_0x11e363,_0x56bd32){_0x11e363=_0x11e363-0xc5;let _0x230026=_0x2199af[_0x11e363];return _0x230026;},_0x11e3(_0x25180e,_0xc462dc);}function displayResults(_0x24fcbd){const _0x500eac=_0x37483a;resultsDiv[_0x500eac(0xf3)]='';if(_0x24fcbd['length']===0x0){resultsDiv[_0x500eac(0xf3)]=_0x500eac(0xec);return;}_0x24fcbd[_0x500eac(0xe6)](_0x520a5f=>{const _0x1a2e8a=_0x500eac,_0x335d1e=document['createElement']('div');_0x335d1e['className']='result-item';const [_0x5d3d36,_0x2c7c69,_0x193d79]=_0x520a5f[_0x1a2e8a(0xcd)][_0x1a2e8a(0xcf)]('-'),_0x2332cf=_0x193d79+'/'+_0x2c7c69+'/'+_0x5d3d36;_0x335d1e['innerHTML']=_0x1a2e8a(0xc7)+_0x2332cf+_0x1a2e8a(0xd1)+_0x520a5f['mediodia']+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>Tarde:\x20'+_0x520a5f[_0x1a2e8a(0xf4)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>Noche:\x20'+_0x520a5f[_0x1a2e8a(0xd7)]+_0x1a2e8a(0xe5),resultsDiv['appendChild'](_0x335d1e);});}function filterResults(){const _0x4339ec=_0x37483a,_0x247d9b=monthSelector[_0x4339ec(0xd8)]['padStart'](0x2,'0'),_0x3ac8f9=daySelector[_0x4339ec(0xd8)][_0x4339ec(0xe9)](0x2,'0'),_0x1eea6e=_0x4339ec(0xd9)+_0x247d9b+'-'+_0x3ac8f9,_0x44173d=lotteryData['filter'](_0x16a600=>_0x16a600[_0x4339ec(0xcd)]<=_0x1eea6e);displayResults(_0x44173d);}init(),searchButton[_0x37483a(0xe4)](_0x37483a(0xd4),filterResults),document[_0x37483a(0xd5)]('yearSelector')[_0x37483a(0xe4)](_0x37483a(0xe3),function(){const _0x592375=_0x37483a,_0x869f60=this[_0x592375(0xd8)],_0x1a3ba8={'2025':_0x592375(0xef),'2024':_0x592375(0xcb),'2023':_0x592375(0xda),'2022':_0x592375(0xc6),'2021':_0x592375(0xdb),'2020':_0x592375(0xcc),'2019':'https://carlosw-sky.github.io/Historial/2019/','2018':_0x592375(0xeb),'2017':_0x592375(0xdf),'2016':_0x592375(0xf6),'2015':'https://carlosw-sky.github.io/Historial/2015/','2014':'https://carlosw-sky.github.io/Historial/2014/','2013':_0x592375(0xd2)};_0x1a3ba8[_0x869f60]?window[_0x592375(0xd6)][_0x592375(0xc8)]=_0x1a3ba8[_0x869f60]:alert(_0x592375(0xe0));});
+/* ================================= Derdl ==================================================== */
+
+document.getElementById("yearSelector").addEventListener("change", function () {
+    const selectedYear = this.value; // 获取用户选择的年份
+
+    // 定义每个年份对应的网站链接
+    const urls = {
+        "2025": "https://carlosw-sky.github.io",
+        "2024": "https://carlosw-sky.github.io/Historial/2024/",
+        "2023": "https://carlosw-sky.github.io/Historial/2023/",
+        "2022": "https://carlosw-sky.github.io/Historial/2022/",
+        "2021": "https://carlosw-sky.github.io/Historial/2021/",
+        "2020": "https://carlosw-sky.github.io/Historial/2020/",
+        "2019": "https://carlosw-sky.github.io/Historial/2019/",
+        "2018": "https://carlosw-sky.github.io/Historial/2018/",
+        "2017": "https://carlosw-sky.github.io/Historial/2017/",
+        "2016": "https://carlosw-sky.github.io/Historial/2016/",
+        "2015": "https://carlosw-sky.github.io/Historial/2015/",
+        "2014": "https://carlosw-sky.github.io/Historial/2014/",
+        "2013": "https://carlosw-sky.github.io/Historial/2013/",
+    };
+
+    // 跳转到对应的网站
+    if (urls[selectedYear]) {
+        window.location.href = urls[selectedYear]; // 跳转到对应链接
+    } else {
+        alert("URL no está configurada para el año seleccionado.");
+    }
+});
