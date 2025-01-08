@@ -2,8 +2,8 @@ const lotteryData = [
     // { date: "2025-mm-dd", mediodia: "--", tarde: "--", noche: "--" },
     /*
     { date: "2025-01-10", mediodia: "--", tarde: "--", noche: "--" },
-    { date: "2025-01-09", mediodia: "--", tarde: "--", noche: "--" },
-    { date: "2025-01-08", mediodia: "--", tarde: "--", noche: "--" },*/
+    { date: "2025-01-09", mediodia: "--", tarde: "--", noche: "--" },*/
+    { date: "2025-01-08", mediodia: "08", tarde: "--", noche: "--" },
     { date: "2025-01-07", mediodia: "70", tarde: "34", noche: "42" },
     { date: "2025-01-06", mediodia: "63", tarde: "02", noche: "70" },
     { date: "2025-01-05", mediodia: "51", tarde: "43", noche: "90" },
