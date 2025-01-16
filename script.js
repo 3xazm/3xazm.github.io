@@ -15,14 +15,14 @@ const lotteryData = [
     { date: "2025-01-20", mediodia: "--", tarde: "--", noche: "--" },
     { date: "2025-01-19", mediodia: "--", tarde: "--", noche: "--" },
     { date: "2025-01-18", mediodia: "--", tarde: "--", noche: "--" },
-    { date: "2025-01-17", mediodia: "--", tarde: "--", noche: "--" },
-    { date: "2025-01-16", mediodia: "--", tarde: "--", noche: "--" },
-    { date: "2025-01-15", mediodia: "--", tarde: "--", noche: "--" },
-    { date: "2025-01-14", mediodia: "--", tarde: "--", noche: "--" },
-    { date: "2025-01-13", mediodia: "--", tarde: "--", noche: "--" },
-    { date: "2025-01-12", mediodia: "--", tarde: "--", noche: "--" },
-    { date: "2025-01-11", mediodia: "--", tarde: "--", noche: "--" },
-    { date: "2025-01-10", mediodia: "--", tarde: "--", noche: "--" },*/
+    { date: "2025-01-17", mediodia: "--", tarde: "--", noche: "--" },*/
+    { date: "2025-01-16", mediodia: "16", tarde: "--", noche: "--" },
+    { date: "2025-01-15", mediodia: "19", tarde: "34", noche: "09" },
+    { date: "2025-01-14", mediodia: "76", tarde: "61", noche: "42" },
+    { date: "2025-01-13", mediodia: "00", tarde: "24", noche: "95" },
+    { date: "2025-01-12", mediodia: "41", tarde: "85", noche: "13" },
+    { date: "2025-01-11", mediodia: "18", tarde: "44", noche: "13" },
+    { date: "2025-01-10", mediodia: "71", tarde: "57", noche: "46" },
     { date: "2025-01-09", mediodia: "05", tarde: "37", noche: "21" },
     { date: "2025-01-08", mediodia: "08", tarde: "21", noche: "51" },
     { date: "2025-01-07", mediodia: "70", tarde: "34", noche: "42" },
@@ -31,7 +31,7 @@ const lotteryData = [
     { date: "2025-01-04", mediodia: "97", tarde: "40", noche: "97" },
     { date: "2025-01-03", mediodia: "48", tarde: "32", noche: "63" },
     { date: "2025-01-02", mediodia: "33", tarde: "42", noche: "76" }
-    // 更多数据
+    // 更多数据 Create more data
 ];
 
 
