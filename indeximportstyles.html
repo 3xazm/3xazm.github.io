@@ -1,9 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>import styles</title>
+	<title>Huawei Firm Finder</title>
+<meta name="a.validate.02" content="YE5_Hzj1qM97jrBCGnqIjCfYJsO_PpuCmYWF" />	
+<meta name="description" content="Quickly, easily and freely find your Huawei phone's firmware. HiSuite Proxy's official integrated firmware finder."/>
+	<meta name="keywords" content="Huawei Phones' Firm, Firmware, Firmware Finder, Huawei Firmware Finder, FirmFinder, Huawei Phone Android, Huawei Phone Firm, Huawei Firmware, Huawei Mate, Huawei P, Huawei Nova, Honor Firm, Honor FirmFinder, Honor Phone Firmware, Honor Firmware Finder, LGRP-OVS, EMUI 9, EMUI 8, EMUI 10, EMUI 11, EMUI 7">
+    <meta charset="utf-8">
+    <meta name="twitter:card" content="summary" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+	<link rel="canonical" href="/" />
+	<meta name="theme-color" content="#0e5551" />
+	<meta property="og:locale" content="en_gb" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Huawei Firm Finder" />
+	<meta property="og:description" content="Quickly, easily and freely find your Huawei phone's firmware. HiSuite Proxy's official integrated firmware finder." />
+	<meta property="og:url" content="/" />
+	<meta property="og:site_name" content="Huawei Firm Finder" />
+	<meta property="og:image" content="https://uupload.ir/files/fun_tw5a_screenshot_20210403-114103_chrome.jpg" />
+	<meta property="og:image:width" content="350" />
+	<meta property="og:image:height" content="511" />
+	<meta name="google-site-verification" content="9iRzaidStgp2j0XBAOZMKa97EhRhJJjfmDq36v2am1g" />
+    <link rel="icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css?v=7">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<!--
+    <script src="js/iranianusers.js"></script>
+-->
+    <script src="js/main.js?v=45"></script>
+    <script type='text/javascript' src='//pl16894379.trustedcpmrevenue.com/76/59/b7/7659b789101976dc08054f9cb6803283.js'></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-LL1NGK6WT2"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-LL1NGK6WT2');
+	</script>
 </head>
-  
 <body onresize="AdjustElements()">
     <style>
 	.bottomad
@@ -25,372 +64,128 @@
 		border: none;
 	}
     </style>
+    <div class="holder">
+        <div class="container">
+            <h1 style="font-family: VeganFont; display: inline;">Huawei Firm Finder</h1>
+            <form style="margin-top: 15px;">
+                <div class="input-group mb-3">
+                    <input type="text" id="inputmodel" oninput="InputChanged()" class="form-control inputStyle" placeholder="Phone Model">
+                    <input type="text" id="inputregion" oninput="InputChanged()" class="form-control inputStyle" placeholder="Region ( CXXX )">
+                    <input type="text" id="inputvendor" oninput="InputChanged()" class="form-control inputStyle" placeholder="Vendor/Country (hw-eu)">
+                    <input type="text" id="inputversion" oninput="InputChanged()" class="form-control inputStyle" placeholder="Target Version" onclick="InputChanged()">
+                </div>
+            </form>
+            <div style="overflow: auto; max-width: 100vw">
+                <table class="table" style="background-color: rgba(0, 0, 0, 0.3); border-radius: 5px; min-width: 753px;">
+                    <thead>
+                        <tr>
+                            <th>RomID</th>
+                            <th>Model</th>
+                            <th title="The BuildNumber that gets installed on your phone">OS Target</th>
+                            <th>Region</th>
+                            <th>Filelist</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-family: ComicSans; overflow: auto" id="dataTable" onscroll="scrolledDown()">
+						<tr>
+							<td>
+								<div class="progress">
+								  <div class="progress-bar" id="pbar" style="width:0%"></div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+	<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog modal-dialog-centered">
 
-  <style>
-    body {
-    margin: 0px;
-    padding: 0px;
-}
+		<!-- Modal content-->
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h4 class="modal-title" id="modalTitle">Rom Details</h4>
+		  </div>
+		  <div class="modal-body" id="modalBody">
+			<button type="button" class="btn btn-primary" onclick="CheckRomStatus(this)">Check Rom Status</button>
+			<br />
+			<button type="button" class="btn btn-primary" onclick="GetRomFileList(this)">Download Rom</button>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  </div>
+		</div>
 
-.container, .table {
-    color: rgb(230, 230, 230);
-    padding-top: 15px;
-}
-
-.container {
-    overflow: auto;
-}
-
-.modal-body
-{
-	text-align: center;
-}
-
-.modal-body button
-{
-	margin-bottom: 10px;
-}
-
-.inputStyle {
-    margin-right: 10px !important;
-    margin-bottom: 10px !important;
-    border-radius: 0.25rem !important;
-    min-width: 100px !important;
-}
-
-changelogheader {
-	width: 100%;
-	display: block;
-	text-align: center;
-	font-size: 1.05rem;
-	padding: 0px 15px 0px 15px;
-}
-
-.logHeader
-{
-	display: block;
-	margin-bottom: 10px;
-	font-size: 1.1rem;
-	margin-top: 20px;
-}
-
-.loghr
-{
-	background-color: white;
-	margin: 15px 15px 0px 15px;
-}
-
-logItem
-{
-	display: block;
-	margin-bottom: 7px;
-}
-
-tr td h2, tr td h3
-{
-	font-size: 1rem;
-}
-
-.table th {
-    border-top: 0px !important;
-}
-
-tbody tr td
-{
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-.fbtn
-{
-	margin-bottom: 10px;
-	margin-right: 5px;
-}
-
-.sbtn
-{
-	margin-bottom: 10px;
-}
-
-.btn-teal
-{
-	color: #fff;
-	background-color: teal;
-	border-color: teal;
-}
-.btn-teal:hover
-{
-	color: #fff;
-	background-color: #006666;
-	border-color: #006666;
-}
-.btn-teal:focus
-{
-	box-shadow: 0 0 0 .2rem #006666;
-}
-
-@font-face {
-    font-family: VeganFont;
-    src: url('../font/vegan.ttf');
-	font-display: swap;
-}
-
-@font-face {
-    font-family: ComicSans;
-    src: url('../font/Comic.ttf');
-	font-display: swap;
-}
-
-table tbody {
-    display: block;
-}
-
-    table thead, table tbody tr {
-        display: table;
-        width: 100%;
-        table-layout: fixed;
-    }
-
-@-webkit-keyframes AnimationName {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@-moz-keyframes AnimationName {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@keyframes AnimationName {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-
-.Notification
-{
-	position: fixed;
-	bottom: 10px;
-	left: -100px;
-	animation: ShowNotification 3s ease-in forwards;
-	transition: left 0.6s;
-	background-color: black;
-	padding: 5px 10px;
-	border-radius: 5px;
-	font-family: ComicSans;
-	z-index: 1060;
-}
-
-.Notification.success
-{
-	color: #1aff1a;
-}
-
-.Notification.error
-{
-	color: #e6e600;
-}
-
-.emphasize {
-    -webkit-animation: DonateAnimation 1.1s ease-in-out infinite alternate;
-    -moz-animation: DonateAnimation 1.1s ease-in-out infinite alternate;
-    animation: DonateAnimation 1.1s ease-in-out infinite alternate;
-}
-
-tbody tr
-{
-	transition: background-color 0.6s;
-}
-
-tbody tr:hover
-{
-	background-color: black;
-}
-
-@keyframes ShowNotification
-{
-	10%
-	{
-		left: 10px;
-	}
-	90%
-	{
-		opacity: 1;
-		left: 10px;
-	}
-	100%
-	{	
-		left: 10px;
-		opacity: 0;
-		visibility: hidden;
-	}
-}
-
-@keyframes DonateAnimation {
-    to {
-        transform: scale(0.75);
-    }
-
-    from {
-        transform: scale(1);
-        box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-    }
-}
-
-.holder {
-    padding: 0px;
-    margin: 0px;
-    height: 100.0vh;
-    width: 100.0vw;
-    overflow: auto;
-    background: linear-gradient(240deg, #13406c, #0e584c, #5c1135);
-    background-size: 200vw 200vh;
-    background-repeat: no-repeat;
-    -webkit-animation: AnimationName 30s ease infinite;
-    -moz-animation: AnimationName 30s ease infinite;
-    animation: AnimationName 30s ease infinite;
-}
-
-.telegram
-{
-	position: fixed;
-	width: 45px;
-	height: 45px;
-	bottom: 110px;
-	right: 13px;
-	cursor: pointer;
-	z-index: 1;
-}
-.guide
-{
-	position: fixed;
-	width: 47px;
-	height: 45px;
-	bottom: 61px;
-	right: 13px;
-	cursor: pointer;
-	z-index: 1;
-}
-.liteyt
-{
-	position: fixed;
-	width: 45px;
-	height: 45px;
-	bottom: 12px;
-	right: 13px;
-	cursor: pointer;
-	z-index: 1;
-	border-radius: 50%;
-	border: 2px solid purple;
-}
-
-iframe
-{
-	border-radius: 6px;
-}
-
-.floatingthingy
-{
-	bottom: 8px;
-	right: 8px;
-	border-radius: 40px;
-	position: fixed;
-	background-color: rgba(255, 255, 255, 0.8);
-	width: 55px;
-	height: 152px;
-	z-index: 0;
-}
-
-@media (pointer: fine) {
-    ::-webkit-scrollbar
-	{
-		width: 15px;
-	}
-	::-webkit-scrollbar-thumb
-	{
-		background-color: grey;
-		border: 4px solid transparent;
-		border-radius: 20px;
-		background-clip: content-box;
-	}
-	.table tr:first-child
-	{
-		margin-top: -1px;
-	}
-}
-
-.databasesBox {
-	position: fixed;
-	top: 10px;
-	right: 20px;
-	height: 30px;
-	background-color: rgba(0, 0, 0, 0.3);
-	transition: height 0.2s ease;
-	overflow: hidden;
-	font-family: ComicSans;
-	color: white;
-	padding: 5px 10px;
-	border-radius: 4px;
-	text-align: center;
-	user-select: none;
-}
-.databasesBox:hover {
-	height: 182px;
-}
-
-.databasesBox hr {
-	background-color: white;
-	border-top: 2px solid rgba(0, 0, 0, 0.1);
-	margin-top: 0;
-	margin-bottom: 0px;
-}
-.databasesText {
-	margin-top: 4px;
-	height: 137px;
-	overflow: auto;
-	font-size: 0.85rem;
-}
-.databasesText a {
-	color: #e4ebe9;
-	display: block;
-	font-family: ComicSans;
-	margin-bottom: 2px;
-	font-weight: bold;	
-	border-bottom: 2px solid white;
-	padding-bottom: 3px;
-	transition: transform 0.2s ease;
-	text-decoration: unset;
-}
-
-.databasesText a:hover {
-	transform: scale(0.95);
-}
-  </style>
-  
+	  </div>
+	</div>
+	<div class="databasesBox">
+		Database
+		<hr>
+		<div class="databasesText">
+			<a href="https://professorjtj.github.io/BaseArchive/" target="_blank">Base Firms</a>
+			<a href="http://ffusersubmission.byethost17.com/" target="_blank">User Firms</a>
+			<a href="https://professorjtj.github.io/Downgrade/" target="_blank">Downgrades</a>
+			<a href="http://professorjtj.github.io/" target="_blank">v1 Firmwares</a>
+			<a href="http://professorjtj.github.io/v2/" target="_blank">v2 Firmwares</a>
+			<a href="https://lyircalmusic.blogspot.com/" target="_blank">Download Songs For Free</a>
+			<a href="https://www.google.com/url?q=https://lyircalmusic.blogspot.com/" target="_blank">MP3 Download Songs</a>
+			<a href="https://www.youtube.com/redirect?q=https://lyircalmusic.blogspot.com/2023/09/zip-download-guts-album-by-olivia.html" target="_blank">MP3 Download Albums</a>
+			<a href="https://legal.un.org/docs/doc_top.asp?path=../ilc/documentation/english/a_cn4_13.pd&Lang=Ef&referer=https://lyircalmusic.blogspot.com/2023/09/zip-download-guts-album-by-olivia.html" target="_blank">LyricalMusic</a>
+		</div>
+	</div>
+	<div class="floatingthingy">
+	</div>
+	<img class="telegram" alt="Support" title="Support" onclick="window.open('https://t.me/firmfinder')" src="../img/telegram.png"/>
+	<img class="guide" alt="Guide Booklet" title="Guide Booklet" onclick="window.open('https://github.com/ProfessorJTJ/HISuite-Proxy/wiki/Complete-Guide')" src="../img/guide.png"/>
+	<a href="https://liteytdownloader.github.io/" target="_blank" rel="external"><img class="liteyt" alt="TopTube - Android YouTube Downloader" title="TopTube - Android YouTube Downloader" src="../img/liteyt.png"/></a>
+	<div style="font-family: ComicSans; position: fixed; bottom: 47px; cursor: pointer; left: 0px; background-color: rgba(255, 255, 255, 0.9); font-size: 0.85em; padding: 2px 7px 5px 4px; border-radius: 0px 10px 10px 0px;" onclick="window.location = 'BaseArchive/';">
+		<div class="spinner-grow spinner-grow-sm text-info"></div> Base Archive
+	</div>
+	<div style="font-family: ComicSans; position: fixed; bottom: 13px; cursor: pointer; left: 0px; background-color: rgba(255, 255, 255, 0.9); font-size: 0.85em; padding: 2px 7px 5px 4px; border-radius: 0px 10px 10px 0px;" onclick="window.location = 'http://ffusersubmission.byethost17.com/';">
+		<div class="spinner-grow spinner-grow-sm text-danger"></div> Users Submissions
+	</div>
+	<span id="notificationSpan"></span>
+	<script>
+		atOptions = {
+				'key' : '768ff70ce3f8d4c3f41f6edf745f53d6',
+				'format' : 'iframe',
+				'height' : 60,
+				'width' : 468,
+				'params' : {}
+		};
+	</script>
+	<div class="bottomad">
+		<script type="text/javascript" async src="//poorlytanrubbing.com/768ff70ce3f8d4c3f41f6edf745f53d6/invoke.js">
+		</script>
+	</div>
+	<script type="text/javascript">
+		var targetDOM = document.querySelector(".bottomad");
+		let realAppend = targetDOM.insertBefore;
+		targetDOM.insertBefore = function()
+		{
+			if (arguments[0].tagName == "IFRAME")
+				arguments[0].sandbox = "allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-scripts allow-top-navigation-by-user-activation";
+			realAppend.apply(this, arguments);
+		};
+		
+		setInterval(function() {
+			atOptions = {
+				'key' : '768ff70ce3f8d4c3f41f6edf745f53d6',
+				'format' : 'iframe',
+				'height' : 60,
+				'width' : 468,
+				'params' : {}
+			};
+			
+			targetDOM.innerHTML = "";
+			
+			let newScript = document.createElement("script");
+			newScript.type = "text/javascript";
+			newScript.async = true;
+			newScript.src = "//poorlytanrubbing.com/768ff70ce3f8d4c3f41f6edf745f53d6/invoke.js";
+			targetDOM.appendChild(newScript);
+		}, 30000);
+	</script>
 </body>
+</html>
