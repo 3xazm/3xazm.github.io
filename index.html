@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
 <title>Document</title>
+<base href="/">
 <link rel="icon" sizes="32x32" href="icon/favicon-32x32.png">    
 
 <!-- StandardMeta-->
@@ -23,9 +24,44 @@
 
 <!--googleapisortag-->
 
+<!-- Flutter Scripts -->
+<script>
+    // Service Worker version injected by Flutter
+    var serviceWorkerVersion = null;
+</script>
+<script src="/flutter.js" defer></script>
+
+
 </head>
+
+
+
 <body>
+    <!--Element-->
+    <script>
+        window.addEventListener('load', function (ev) {
+          // Descargar main.dart.js para cargar Flutter
+          _flutter.loader.loadEntrypoint({
+            entrypointUrl: '/main.dart.js',
+            serviceWorker: {
+              serviceWorkerUrl: '/flutter_service_worker.js?v=',
+              serviceWorkerVersion: serviceWorkerVersion,
+            },
+            onEntrypointLoaded: async function(engineInitializer) {
+              // Inicializar Flutter
+              let appRunner = await engineInitializer.initializeEngine({});
+              await appRunner.runApp();
+            }
+          });
+        });
+      </script>
 <!--Webdesign-->
-    alvhelloworldd
+<!--========================================
+        WEB DESIGN
+========================================-->
+
+    Este web esta vacio, Fuiste mal sitio de URL, por favor verifica la URL que has escrito.
 </body>
 </html>
+
+ 
