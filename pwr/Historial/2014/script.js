@@ -474,19 +474,19 @@ document.getElementById("yearSelector").addEventListener("change", function () {
 
     // 定义每个年份对应的网站链接
     const urls = {
-        "2025": "https://carlosw-sky.github.io/pwr/",
-        "2024": "https://carlosw-sky.github.io/pwr/Historial/2024/",
-        "2023": "https://carlosw-sky.github.io/pwr/Historial/2023/",
-        "2022": "https://carlosw-sky.github.io/pwr/Historial/2022/",
-        "2021": "https://carlosw-sky.github.io/pwr/Historial/2021/",
-        "2020": "https://carlosw-sky.github.io/pwr/Historial/2020/",
-        "2019": "https://carlosw-sky.github.io/pwr/Historial/2019/",
-        "2018": "https://carlosw-sky.github.io/pwr/Historial/2018/",
-        "2017": "https://carlosw-sky.github.io/pwr/Historial/2017/",
-        "2016": "https://carlosw-sky.github.io/pwr/Historial/2016/",
-        "2015": "https://carlosw-sky.github.io/pwr/Historial/2015/",
-        "2014": "https://carlosw-sky.github.io/pwr/Historial/2014/",
-        "2013": "https://carlosw-sky.github.io/pwr/Historial/2013/",
+     "2025": "/pwr/index.html",
+        "2024": "/pwr/Historial/2024/",
+        "2023": "/pwr/Historial/2023/",
+        "2022": "/pwr/Historial/2022/",
+        "2021": "/pwr/Historial/2021/",
+        "2020": "/pwr/Historial/2020/",
+        "2019": "/pwr/Historial/2019/",
+        "2018": "/pwr/Historial/2018/",
+        "2017": "/pwr/Historial/2017/",
+        "2016": "/pwr/Historial/2016/",
+        "2015": "/pwr/Historial/2015/",
+        "2014": "/pwr/Historial/2014/",
+        "2013": "/pwr/Historial/2013/",
     };
 
     // 跳转到对应的网站
