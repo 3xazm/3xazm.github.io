@@ -414,7 +414,7 @@ const lotteryData = [
     { date: "2024-01-01", mediodia: "--", tarde: "--", noche: "--" },
     // 更多数据
 ];
-/*
+
 // DOM 元素
 const daySelector = document.getElementById("daySelector");
 const monthSelector = document.getElementById("monthSelector");
@@ -505,4 +505,3 @@ document.getElementById("yearSelector").addEventListener("change", function () {
         alert("URL no está configurada para el año seleccionado.");
     }
 });
-*/
