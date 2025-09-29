@@ -1,3 +1,4 @@
+
 // DOM 元素
 const daySelector = document.getElementById("daySelector");
 const monthSelector = document.getElementById("monthSelector");
@@ -81,15 +82,13 @@ init();
 // 绑定搜索按钮事件
 searchButton.addEventListener("click", filterResults);
 
-
-/* ================================= Derdl ==================================================== */
 document.getElementById("yearSelector").addEventListener("change", function () {
     const selectedYear = this.value; // 获取用户选择的年份
 
     
     // 定义每个年份对应的网站链接 @调用全部
     const urls = {
-        "2025": "https://3xazm.github.io/w/pm2/Historial/2024/",
+        "2025": "https://3xazm.github.io/w/pm2/Historial/2025/",
         "2024": "https://3xazm.github.io/w/pm2/Historial/2024/",
         "2023": "https://3xazm.github.io/w/pm2/Historial/2023/",
         "2022": "https://3xazm.github.io/w/pm2/Historial/2022/",
