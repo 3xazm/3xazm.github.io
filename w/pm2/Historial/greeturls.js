@@ -85,7 +85,7 @@ searchButton.addEventListener("click", filterResults);
 document.getElementById("yearSelector").addEventListener("change", function () {
     const selectedYear = this.value; // 获取用户选择的年份
 
-    
+
     // 定义每个年份对应的网站链接 @调用全部
     const urls = {
         "2025": "https://edwinarch.github.io/w/pm2/Historial/2025/",
