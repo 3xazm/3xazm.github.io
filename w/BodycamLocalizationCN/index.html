@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bodycam 中文语言包</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", sans-serif;
+            background: #08111f;
+            color: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.18), transparent 42%), linear-gradient(145deg, #08111f, #111827 65%, #172554);
+            pointer-events: none;
+        }
+        .card {
+            background: rgba(15, 23, 42, 0.92);
+            border-radius: 18px;
+            padding: 32px;
+            max-width: 540px;
+            width: 100%;
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+            text-align: center;
+            border: 1px solid rgba(125, 211, 252, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            text-align: left;
+        }
+        .brand {
+            color: #bae6fd;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .language-switcher {
+            display: inline-flex;
+            padding: 3px;
+            background: #0b172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+        }
+        .language-switcher button {
+            border: 0;
+            border-radius: 6px;
+            background: transparent;
+            color: #94a3b8;
+            cursor: pointer;
+            font: inherit;
+            font-size: 0.8rem;
+            padding: 7px 10px;
+        }
+        .language-switcher button[aria-pressed="true"] {
+            background: #0ea5e9;
+            color: #082f49;
+            font-weight: 700;
+        }
+        .language-switcher button:focus-visible,
+        .btn:focus-visible {
+            outline: 3px solid #facc15;
+            outline-offset: 3px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #0ea5e9;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 12px;
+            letter-spacing: 0.01em;
+        }
+        p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 0 0 28px;
+            text-align: left;
+        }
+        .step {
+            background: rgba(30, 41, 59, 0.72);
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 12px;
+        }
+        .step-number {
+            display: block;
+            color: #38bdf8;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .step-text {
+            color: #cbd5e1;
+            font-size: 0.82rem;
+            line-height: 1.45;
+        }
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-hans {
+            background-color: #2563eb;
+            color: #ffffff;
+        }
+        .btn-hans:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+        }
+        .btn-hant {
+            background-color: #334155;
+            color: #f8fafc;
+            border: 1px solid #475569;
+        }
+        .btn-hant:hover {
+            background-color: #475569;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        .footer-note {
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        @media (max-width: 480px) {
+            .card {
+                padding: 24px 18px;
+            }
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+                margin-bottom: 24px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .steps {
+                grid-template-columns: 1fr;
+            }
+            .step {
+                display: grid;
+                grid-template-columns: 42px 1fr;
+                align-items: center;
+                padding: 10px 12px;
+            }
+            .step-number {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="card">
+        <div class="topbar">
+            <span class="brand">Bodycam · Localization</span>
+            <div class="language-switcher" aria-label="页面语言 / 頁面語言">
+                <button type="button" data-language="zh-CN" aria-pressed="true">简体</button>
+                <button type="button" data-language="zh-TW" aria-pressed="false">繁體</button>
+            </div>
+        </div>
+
+        <span class="tag" data-i18n="tag">Unreal Engine 本地化</span>
+        <h1 data-i18n="title">Bodycam 中文语言包</h1>
+        <p data-i18n="description">为 Bodycam 提供简体中文与繁體中文语言包。请选择适合你的版本下载。</p>
+
+        <div class="steps" aria-label="安装步骤">
+            <div class="step"><span class="step-number">01</span><span class="step-text" data-i18n="step1">选择语言</span></div>
+            <div class="step"><span class="step-number">02</span><span class="step-text" data-i18n="step2">下载 ZIP 文件</span></div>
+            <div class="step"><span class="step-number">03</span><span class="step-text" data-i18n="step3">解压并覆盖文件</span></div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="https://github.com/3xazm/BodycamLocalizationCN/releases/download/zh-Hans%E7%AE%80%E4%BD%93%E5%8C%85/bodycamLocalizationzhHans.zip" class="btn btn-hans" data-i18n="hansDownload">
+                下载简体中文包 (.zip)
+            </a>
+            <a href="https://github.com/3xazm/BodycamLocalizationCN/releases/download/zh-Hant%E7%B9%81%E4%BD%93%E5%8C%85/BodycamLocalizationzhHant.zip" class="btn btn-hant" data-i18n="hantDownload">
+                下载繁體中文包 (.zip)
+            </a>
+        </div>
+
+        <div class="footer-note" data-i18n="note">
+            解压后，将本地化文件覆盖到游戏对应目录即可生效。
+        </div>
+    </main>
+
+    <script>
+        const translations = {
+            "zh-CN": {
+                tag: "Unreal Engine 本地化",
+                title: "Bodycam 中文语言包",
+                description: "为 Bodycam 提供简体中文与繁體中文语言包。请选择适合你的版本下载。",
+                step1: "选择语言",
+                step2: "下载 ZIP 文件",
+                step3: "解压并覆盖文件",
+                hansDownload: "下载简体中文包 (.zip)",
+                hantDownload: "下载繁體中文包 (.zip)",
+                note: "解压后，将本地化文件覆盖到游戏对应目录即可生效。"
+            },
+            "zh-TW": {
+                tag: "Unreal Engine 本地化",
+                title: "Bodycam 中文語言包",
+                description: "為 Bodycam 提供簡體中文與繁體中文語言包。請選擇適合你的版本下載。",
+                step1: "選擇語言",
+                step2: "下載 ZIP 檔案",
+                step3: "解壓縮並覆蓋檔案",
+                hansDownload: "下載簡體中文包 (.zip)",
+                hantDownload: "下載繁體中文包 (.zip)",
+                note: "解壓縮後，將本地化檔案覆蓋到遊戲對應資料夾即可生效。"
+            }
+        };
+
+        const page = document.documentElement;
+        const buttons = document.querySelectorAll("[data-language]");
+        const textNodes = document.querySelectorAll("[data-i18n]");
+
+        function setLanguage(language) {
+            const copy = translations[language];
+            page.lang = language;
+            document.title = language === "zh-TW" ? "Bodycam 中文語言包" : "Bodycam 中文语言包";
+            textNodes.forEach((node) => {
+                node.textContent = copy[node.dataset.i18n];
+            });
+            buttons.forEach((button) => {
+                button.setAttribute("aria-pressed", button.dataset.language === language);
+            });
+        }
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => setLanguage(button.dataset.language));
+        });
+    </script>
+
+</body>
+</html>
