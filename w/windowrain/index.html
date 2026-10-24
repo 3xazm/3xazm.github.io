@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rain on Glass</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #263233;
+}
+
+body {
+    position: relative;
+}
+
+/* =========================================================
+   窗外背景
+   ========================================================= */
+
+.window-background {
+    position: absolute;
+    inset: -35px;
+
+    background:
+        radial-gradient(
+            ellipse at 16% 63%,
+            rgba(255, 164, 94, .65) 0%,
+            rgba(220, 105, 65, .22) 9%,
+            transparent 23%
+        ),
+
+        radial-gradient(
+            ellipse at 74% 28%,
+            rgba(205, 222, 213, .48) 0%,
+            rgba(137, 166, 158, .20) 15%,
+            transparent 34%
+        ),
+
+        radial-gradient(
+            ellipse at 84% 72%,
+            rgba(243, 188, 103, .52) 0%,
+            rgba(202, 121, 69, .12) 11%,
+            transparent 23%
+        ),
+
+        linear-gradient(
+            115deg,
+            #506260 0%,
+            #899591 25%,
+            #536362 48%,
+            #798783 73%,
+            #3b4848 100%
+        );
+
+    filter:
+        blur(14px)
+        saturate(.82);
+
+    transform: scale(1.05);
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   模糊城市
+   ========================================================= */
+
+.city {
+    position: absolute;
+    inset: 0;
+
+    opacity: .42;
+
+    filter: blur(18px);
+}
+
+.building {
+    position: absolute;
+    bottom: -5%;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(25, 36, 37, .7),
+            rgba(67, 78, 77, .38),
+            rgba(24, 34, 35, .72)
+        );
+
+    border-radius: 6px;
+}
+
+.building:nth-child(1) {
+    left: -5%;
+    width: 21%;
+    height: 67%;
+}
+
+.building:nth-child(2) {
+    left: 18%;
+    width: 16%;
+    height: 43%;
+}
+
+.building:nth-child(3) {
+    left: 38%;
+    width: 25%;
+    height: 70%;
+}
+
+.building:nth-child(4) {
+    right: 12%;
+    width: 20%;
+    height: 55%;
+}
+
+.building:nth-child(5) {
+    right: -5%;
+    width: 18%;
+    height: 72%;
+}
+
+
+/* =========================================================
+   背景灯光
+   ========================================================= */
+
+.city-lights {
+    position: absolute;
+    inset: 0;
+
+    filter: blur(10px);
+
+    opacity: .58;
+}
+
+.light {
+    position: absolute;
+
+    width: 50px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255, 226, 165, .92),
+            rgba(255, 153, 89, .22) 42%,
+            transparent 72%
+        );
+}
+
+.light:nth-child(1) {
+    left: 8%;
+    top: 65%;
+}
+
+.light:nth-child(2) {
+    left: 18%;
+    top: 74%;
+
+    transform: scale(1.6);
+}
+
+.light:nth-child(3) {
+    left: 32%;
+    top: 57%;
+
+    transform: scale(.65);
+}
+
+.light:nth-child(4) {
+    left: 55%;
+    top: 71%;
+
+    transform: scale(1.25);
+}
+
+.light:nth-child(5) {
+    right: 15%;
+    top: 60%;
+
+    transform: scale(1.5);
+}
+
+.light:nth-child(6) {
+    right: 4%;
+    top: 76%;
+}
+
+
+/* =========================================================
+   玻璃
+   ========================================================= */
+
+.glass {
+    position: absolute;
+    inset: 0;
+
+    z-index: 2;
+
+    background:
+        linear-gradient(
+            108deg,
+            rgba(255,255,255,.035),
+            rgba(255,255,255,.008) 35%,
+            rgba(255,255,255,.026) 70%,
+            rgba(255,255,255,.008)
+        );
+
+    backdrop-filter:
+        blur(1.3px)
+        saturate(.9);
+
+    -webkit-backdrop-filter:
+        blur(1.3px)
+        saturate(.9);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   雨水 Canvas
+   ========================================================= */
+
+#rainCanvas {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   很轻的玻璃雾
+   ========================================================= */
+
+.haze {
+    position: absolute;
+    inset: 0;
+
+    z-index: 6;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 25%,
+            rgba(220, 232, 228, .025) 65%,
+            rgba(120, 145, 143, .07) 100%
+        );
+}
+
+
+/* =========================================================
+   玻璃反射
+   ========================================================= */
+
+.reflection {
+    position: absolute;
+
+    width: 42%;
+    height: 140%;
+
+    left: -18%;
+    top: -20%;
+
+    transform: rotate(7deg);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.012),
+            transparent
+        );
+
+    filter: blur(25px);
+
+    z-index: 8;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   暗角
+   ========================================================= */
+
+.vignette {
+    position: absolute;
+    inset: 0;
+
+    z-index: 9;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 48%,
+            rgba(7, 15, 16, .08) 75%,
+            rgba(7, 15, 16, .27) 100%
+        );
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="window-background">
+
+    <div class="city">
+
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+
+    </div>
+
+    <div class="city-lights">
+
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+
+    </div>
+
+</div>
+
+
+<div class="glass"></div>
+
+<canvas id="rainCanvas"></canvas>
+
+<div class="haze"></div>
+
+<div class="reflection"></div>
+
+<div class="vignette"></div>
+
+
+<script>
+
+/* =========================================================
+   REALISTIC RAIN ON GLASS
+   ========================================================= */
+
+const canvas =
+    document.getElementById("rainCanvas");
+
+const ctx =
+    canvas.getContext("2d");
+
+let width = 0;
+let height = 0;
+
+let droplets = [];
+
+let previousTime =
+    performance.now();
+
+
+/* =========================================================
+   Random
+   ========================================================= */
+
+function random(min, max) {
+
+    return min +
+        Math.random() *
+        (max - min);
+}
+
+
+/* =========================================================
+   Clamp
+   ========================================================= */
+
+function clamp(value, min, max) {
+
+    return Math.max(
+        min,
+        Math.min(
+            max,
+            value
+        )
+    );
+}
+
+
+/* =========================================================
+   水滴
+   ========================================================= */
+
+class Droplet {
+
+    constructor() {
+
+        this.reset();
+    }
+
+
+    reset() {
+
+        this.x =
+            random(
+                0,
+                width
+            );
+
+        this.y =
+            random(
+                0,
+                height
+            );
+
+
+        /*
+         * 水滴尺寸
+         */
+
+        const sizeRandom =
+            Math.random();
+
+
+        if (sizeRandom < .72) {
+
+            /*
+             * 大量非常小的水珠
+             */
+
+            this.radius =
+                random(
+                    .45,
+                    1.9
+                );
+
+        } else if (sizeRandom < .94) {
+
+            /*
+             * 普通水珠
+             */
+
+            this.radius =
+                random(
+                    1.5,
+                    3.6
+                );
+
+        } else {
+
+            /*
+             * 少量大水珠
+             */
+
+            this.radius =
+                random(
+                    3.5,
+                    8
+                );
+        }
+
+
+        /*
+         * =================================================
+         * 是否滑动
+         *
+         * 绝大多数水滴不会动
+         * =================================================
+         */
+
+        const movementRandom =
+            Math.random();
+
+
+        if (movementRandom < .77) {
+
+            this.state =
+                "static";
+
+        } else if (movementRandom < .91) {
+
+            this.state =
+                "slow";
+
+        } else if (movementRandom < .985) {
+
+            this.state =
+                "medium";
+
+        } else {
+
+            this.state =
+                "fast";
+        }
+
+
+        /*
+         * 当前速度
+         */
+
+        this.velocity = 0;
+
+
+        /*
+         * 不同水滴自己的最大速度
+         */
+
+        if (this.state === "static") {
+
+            this.maxVelocity =
+                random(
+                    0,
+                    .0008
+                );
+
+        }
+
+        else if (this.state === "slow") {
+
+            this.maxVelocity =
+                random(
+                    .006,
+                    .025
+                );
+
+        }
+
+        else if (this.state === "medium") {
+
+            this.maxVelocity =
+                random(
+                    .018,
+                    .075
+                );
+
+        }
+
+        else {
+
+            this.maxVelocity =
+                random(
+                    .055,
+                    .20
+                );
+        }
+
+
+        /*
+         * 目标速度
+         */
+
+        this.targetVelocity =
+            this.maxVelocity;
+
+
+        /*
+         * =================================================
+         * 滑动状态
+         *
+         * 0 = 停止
+         * 1 = 慢慢开始
+         * 2 = 滑动
+         * 3 = 慢慢停下
+         * =================================================
+         */
+
+        if (
+            this.state === "static"
+        ) {
+
+            this.motionState =
+                "stopped";
+
+        } else {
+
+            this.motionState =
+                Math.random() < .45
+                    ? "stopped"
+                    : "moving";
+        }
+
+
+        /*
+         * 每个水滴拥有完全不同的
+         * 停顿时间
+         */
+
+        this.pauseTimer =
+            random(
+                1,
+                12
+            );
+
+
+        /*
+         * 下一次速度变化
+         */
+
+        this.changeTimer =
+            random(
+                2,
+                9
+            );
+
+
+        /*
+         * 形状
+         */
+
+        this.widthScale =
+            random(
+                .72,
+                1.18
+            );
+
+        this.heightScale =
+            random(
+                .78,
+                1.35
+            );
+
+
+        /*
+         * 每个水滴都有自己的轻微形变
+         */
+
+        this.shape = [];
+
+        const points = 14;
+
+        for (
+            let i = 0;
+            i < points;
+            i++
+        ) {
+
+            this.shape.push(
+                random(
+                    .78,
+                    1.22
+                )
+            );
+        }
+
+
+        this.points =
+            points;
+
+
+        /*
+         * 水珠透明度
+         */
+
+        this.opacity =
+            random(
+                .28,
+                .68
+            );
+
+
+        /*
+         * 水痕长度
+         */
+
+        if (
+            this.radius > 3 &&
+            this.state !== "static"
+        ) {
+
+            this.trailLength =
+                random(
+                    8,
+                    65
+                );
+
+        } else {
+
+            this.trailLength = 0;
+        }
+
+
+        /*
+         * 水珠自身不会左右移动
+         */
+
+        this.xVelocity = 0;
+
+
+        /*
+         * 轻微的纵向变形
+         */
+
+        this.stretch =
+            1;
+
+
+        /*
+         * 每个水珠不同的玻璃摩擦
+         */
+
+        this.friction =
+            random(
+                .55,
+                1.55
+            );
+
+
+        /*
+         * 下一次可能暂停
+         */
+
+        this.pauseChance =
+            random(
+                .001,
+                .004
+            );
+    }
+
+
+    /* =====================================================
+       更新水滴
+       ===================================================== */
+
+    update(delta) {
+
+        /*
+         * 时间标准化
+         */
+
+        const dt =
+            delta / 16.6667;
+
+
+        /* =================================================
+           STATIC
+
+           基本完全不动
+           ================================================= */
+
+        if (
+            this.state === "static"
+        ) {
+
+            /*
+             * 绝对不会突然跑起来。
+             */
+
+            this.velocity *=
+                Math.pow(
+                    .995,
+                    dt
+                );
+
+            return;
+        }
+
+
+        /* =================================================
+           停顿计时
+           ================================================= */
+
+        if (
+            this.motionState === "stopped"
+        ) {
+
+            this.pauseTimer -=
+                delta / 1000;
+
+
+            if (
+                this.pauseTimer <= 0
+            ) {
+
+                /*
+                 * 开始滑动
+                 */
+
+                this.motionState =
+                    "moving";
+
+                this.targetVelocity =
+                    random(
+                        this.maxVelocity * .25,
+                        this.maxVelocity
+                    );
+            }
+
+
+            /*
+             * 停止状态下速度缓慢归零
+             */
+
+            this.velocity *=
+                Math.pow(
+                    .94,
+                    dt
+                );
+
+        }
+
+
+        /* =================================================
+           MOVING
+           ================================================= */
+
+        else {
+
+            /*
+             * 偶尔停下来
+             *
+             * 不是所有水滴都停，
+             * 而是每颗水滴独立决定。
+             */
+
+            if (
+                Math.random() <
+                this.pauseChance * dt
+            ) {
+
+                this.motionState =
+                    "stopped";
+
+                this.pauseTimer =
+                    random(
+                        1.5,
+                        10
+                    );
+
+                this.targetVelocity =
+                    0;
+            }
+
+
+            /*
+             * 偶尔改变速度
+             *
+             * 不是左右移动，
+             * 只是纵向速度改变。
+             */
+
+            this.changeTimer -=
+                delta / 1000;
+
+
+            if (
+                this.changeTimer <= 0
+            ) {
+
+                this.targetVelocity =
+                    random(
+                        this.maxVelocity * .25,
+                        this.maxVelocity
+                    );
+
+                this.changeTimer =
+                    random(
+                        2,
+                        8
+                    );
+            }
+
+        }
+
+
+        /* =================================================
+           速度逼近目标速度
+
+           模拟：
+           表面张力
+           玻璃摩擦
+           水膜
+           ================================================= */
+
+        const acceleration =
+            this.motionState === "stopped"
+                ? .045
+                : .018;
+
+
+        this.velocity +=
+            (
+                this.targetVelocity -
+                this.velocity
+            ) *
+            acceleration *
+            dt;
+
+
+        /*
+         * 玻璃摩擦
+         */
+
+        this.velocity *=
+            Math.pow(
+                this.friction > 1.2
+                    ? .992
+                    : .997,
+                dt
+            );
+
+
+        /*
+         * 重力
+
+         * 只改变 Y
+         */
+
+        this.y +=
+            this.velocity *
+            dt;
+
+
+        /*
+         * =================================================
+         * 重要：
+         *
+         * 没有：
+         *
+         * x += sin(...)
+         *
+         * 没有 drift
+         *
+         * 没有随机左右摆动
+         * =================================================
+         */
+
+
+        /*
+         * 水滴向下滑时
+         * 会稍微拉长
+         */
+
+        const speedRatio =
+            clamp(
+                this.velocity /
+                Math.max(
+                    this.maxVelocity,
+                    .001
+                ),
+                0,
+                1
+            );
+
+
+        this.stretch =
+            1 +
+            speedRatio *
+            .38;
+
+
+        /*
+         * 到底部以后重新出现
+         */
+
+        if (
+            this.y >
+            height +
+            this.radius * 3
+        ) {
+
+            this.reset();
+
+            /*
+             * 重新出现时，
+             * 不要直接出现在画面顶部
+             */
+
+            this.y =
+                -random(
+                    5,
+                    100
+                );
+        }
+    }
+
+
+    /* =====================================================
+       水滴形状
+       ===================================================== */
+
+    createPath() {
+
+        const r =
+            this.radius;
+
+
+        ctx.beginPath();
+
+
+        for (
+            let i = 0;
+            i <= this.points;
+            i++
+        ) {
+
+            const angle =
+                Math.PI * 2 *
+                i /
+                this.points;
+
+
+            const localRadius =
+                r *
+                this.shape[
+                    i %
+                    this.points
+                ];
+
+
+            const x =
+                Math.cos(angle) *
+                localRadius *
+                this.widthScale;
+
+
+            const y =
+                Math.sin(angle) *
+                localRadius *
+                this.heightScale *
+                this.stretch;
+
+
+            if (i === 0) {
+
+                ctx.moveTo(
+                    x,
+                    y
+                );
+
+            } else {
+
+                ctx.lineTo(
+                    x,
+                    y
+                );
+            }
+        }
+
+
+        ctx.closePath();
+    }
+
+
+    /* =====================================================
+       水痕
+       ===================================================== */
+
+    drawTrail() {
+
+        if (
+            this.trailLength <= 1 ||
+            this.velocity <= .002
+        ) {
+
+            return;
+        }
+
+
+        const length =
+            this.trailLength *
+            clamp(
+                this.velocity /
+                Math.max(
+                    this.maxVelocity,
+                    .001
+                ),
+                .15,
+                1
+            );
+
+
+        /*
+         * 水痕必须非常淡
+         */
+
+        const gradient =
+            ctx.createLinearGradient(
+                this.x,
+                this.y - length,
+                this.x,
+                this.y
+            );
+
+
+        gradient.addColorStop(
+            0,
+            "rgba(230,245,244,0)"
+        );
+
+
+        gradient.addColorStop(
+            .55,
+            `rgba(
+                225,
+                242,
+                240,
+                ${this.opacity * .035}
+            )`
+        );
+
+
+        gradient.addColorStop(
+            .85,
+            `rgba(
+                240,
+                250,
+                249,
+                ${this.opacity * .075}
+            )`
+        );
+
+
+        gradient.addColorStop(
+            1,
+            `rgba(
+                255,
+                255,
+                255,
+                ${this.opacity * .14}
+            )`
+        );
+
+
+        ctx.strokeStyle =
+            gradient;
+
+
+        ctx.lineWidth =
+            Math.max(
+                .35,
+                this.radius * .18
+            );
+
+
+        ctx.lineCap =
+            "round";
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            this.x,
+            this.y - length
+        );
+
+        ctx.lineTo(
+            this.x,
+            this.y
+        );
+
+        ctx.stroke();
+    }
+
+
+    /* =====================================================
+       绘制水滴
+       ===================================================== */
+
+    draw() {
+
+        const r =
+            this.radius;
+
+
+        /*
+         * 太小的水珠
+         */
+
+        if (
+            r < .8
+        ) {
+
+            ctx.fillStyle =
+                `rgba(
+                    245,
+                    255,
+                    255,
+                    ${this.opacity * .45}
+                )`;
+
+            ctx.beginPath();
+
+            ctx.arc(
+                this.x,
+                this.y,
+                r,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fill();
+
+            return;
+        }
+
+
+        /*
+         * 水痕
+         */
+
+        this.drawTrail();
+
+
+        /* =================================================
+           水滴下面的暗影
+           ================================================= */
+
+        ctx.save();
+
+        ctx.translate(
+            this.x + r * .18,
+            this.y + r * .28
+        );
+
+        this.createPath();
+
+        ctx.fillStyle =
+            `rgba(
+                15,
+                30,
+                31,
+                ${this.opacity * .16}
+            )`;
+
+        ctx.filter =
+            `blur(${r * .35}px)`;
+
+        ctx.fill();
+
+        ctx.restore();
+
+
+        /* =================================================
+           水滴主体
+           ================================================= */
+
+        ctx.save();
+
+        ctx.translate(
+            this.x,
+            this.y
+        );
+
+
+        /*
+         * 轻微的纵向拉伸
+         */
+
+        const body =
+            ctx.createRadialGradient(
+                -r * .30,
+                -r * .36,
+                r * .05,
+
+                0,
+                0,
+                r * 1.35
+            );
+
+
+        /*
+         * 顶部高光
+         */
+
+        body.addColorStop(
+            0,
+            `rgba(
+                255,
+                255,
+                255,
+                ${this.opacity * .78}
+            )`
+        );
+
+
+        body.addColorStop(
+            .16,
+            `rgba(
+                224,
+                242,
+                241,
+                ${this.opacity * .50}
+            )`
+        );
+
+
+        body.addColorStop(
+            .42,
+            `rgba(
+                145,
+                176,
+                177,
+                ${this.opacity * .20}
+            )`
+        );
+
+
+        /*
+         * 水滴边缘暗部
+         */
+
+        body.addColorStop(
+            .72,
+            `rgba(
+                46,
+                70,
+                71,
+                ${this.opacity * .20}
+            )`
+        );
+
+
+        body.addColorStop(
+            1,
+            "rgba(20,35,36,0)"
+        );
+
+
+        ctx.fillStyle =
+            body;
+
+
+        this.createPath();
+
+        ctx.fill();
+
+
+        /* =================================================
+           水滴底部阴影
+           ================================================= */
+
+        const bottom =
+            ctx.createLinearGradient(
+                0,
+                -r,
+                0,
+                r * 1.3
+            );
+
+
+        bottom.addColorStop(
+            0,
+            "rgba(255,255,255,0)"
+        );
+
+
+        bottom.addColorStop(
+            .55,
+            "rgba(255,255,255,0)"
+        );
+
+
+        bottom.addColorStop(
+            .85,
+            `rgba(
+                20,
+                43,
+                44,
+                ${this.opacity * .16}
+            )`
+        );
+
+
+        bottom.addColorStop(
+            1,
+            "rgba(10,20,20,0)"
+        );
+
+
+        ctx.fillStyle =
+            bottom;
+
+
+        this.createPath();
+
+        ctx.fill();
+
+
+        /* =================================================
+           高光
+           ================================================= */
+
+        const highlight =
+            ctx.createRadialGradient(
+                -r * .38,
+                -r * .42,
+                0,
+
+                -r * .38,
+                -r * .42,
+                r * .7
+            );
+
+
+        highlight.addColorStop(
+            0,
+            `rgba(
+                255,
+                255,
+                255,
+                ${this.opacity * .92}
+            )`
+        );
+
+
+        highlight.addColorStop(
+            .25,
+            `rgba(
+                255,
+                255,
+                255,
+                ${this.opacity * .34}
+            )`
+        );
+
+
+        highlight.addColorStop(
+            1,
+            "rgba(255,255,255,0)"
+        );
+
+
+        ctx.fillStyle =
+            highlight;
+
+
+        ctx.beginPath();
+
+        ctx.ellipse(
+            -r * .30,
+            -r * .38,
+
+            r * .30,
+            r * .21,
+
+            -.45,
+
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fill();
+
+
+        /*
+         * 第二个很小的反光点
+         */
+
+        if (
+            r > 2
+        ) {
+
+            ctx.fillStyle =
+                `rgba(
+                    255,
+                    255,
+                    255,
+                    ${this.opacity * .45}
+                )`;
+
+            ctx.beginPath();
+
+            ctx.arc(
+                -r * .12,
+                -r * .13,
+                Math.max(
+                    .25,
+                    r * .09
+                ),
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fill();
+        }
+
+
+        ctx.restore();
+    }
+}
+
+
+/* =========================================================
+   Resize
+   ========================================================= */
+
+function resize() {
+
+    const dpr =
+        Math.min(
+            window.devicePixelRatio || 1,
+            2
+        );
+
+
+    width =
+        window.innerWidth;
+
+    height =
+        window.innerHeight;
+
+
+    canvas.width =
+        width * dpr;
+
+    canvas.height =
+        height * dpr;
+
+
+    canvas.style.width =
+        width + "px";
+
+    canvas.style.height =
+        height + "px";
+
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
+
+    /*
+     * 水滴数量
+     */
+
+    droplets = [];
+
+
+    const amount =
+        Math.floor(
+            width *
+            height /
+            4200
+        );
+
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        droplets.push(
+            new Droplet()
+        );
+    }
+}
+
+
+/* =========================================================
+   动画
+   ========================================================= */
+
+function animate(time) {
+
+    const delta =
+        Math.min(
+            time -
+            previousTime,
+            50
+        );
+
+
+    previousTime =
+        time;
+
+
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    /*
+     * 水痕先画
+     */
+
+    for (
+        const drop of droplets
+    ) {
+
+        if (
+            drop.trailLength > 0
+        ) {
+
+            drop.drawTrail();
+        }
+    }
+
+
+    /*
+     * 再画水滴
+     */
+
+    for (
+        const drop of droplets
+    ) {
+
+        drop.draw();
+    }
+
+
+    /*
+     * 更新水滴
+
+     * 每一颗独立计算
+     */
+
+    for (
+        const drop of droplets
+    ) {
+
+        drop.update(
+            delta
+        );
+    }
+
+
+    requestAnimationFrame(
+        animate
+    );
+}
+
+
+/* =========================================================
+   Start
+   ========================================================= */
+
+window.addEventListener(
+    "resize",
+    resize
+);
+
+resize();
+
+requestAnimationFrame(
+    animate
+);
+
+</script>
+
+</body>
+</html>
