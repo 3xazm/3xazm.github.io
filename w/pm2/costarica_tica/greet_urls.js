@@ -4,7 +4,6 @@ const daySelector = document.getElementById("daySelector");
 const monthSelector = document.getElementById("monthSelector");
 const searchButton = document.getElementById("searchButton");
 const resultsDiv = document.querySelector(".results");
-const loadingOverlay = document.getElementById("loading");
 
 
 // 初始化：动态生成天数下拉菜单 & 显示全部记录
@@ -57,24 +56,10 @@ function filterResults() {
     const selectedDay = daySelector.value.padStart(2, "0");
     const selectedDate = `2025-${selectedMonth}-${selectedDay}`;
 
-    // 显示加载画面
-    const loadingOverlay = document.getElementById("loading");
-    loadingOverlay.style.display = "flex";
-
-    // 模拟加载过程，设置定时器
-    setTimeout(() => {
-        // 筛选符合条件的记录（日期 <= 选定日期）
-        const filteredResults = lotteryData.filter(item => item.date <= selectedDate);
-
-        // 隐藏加载画面
-        loadingOverlay.style.display = "none";
-        // 显示结果
-        displayResults(filteredResults);
-    }, 500); // 模拟 1 秒的加载时间
+    // 筛选符合条件的记录（日期 <= 选定日期）
+    const filteredResults = lotteryData.filter(item => item.date <= selectedDate);
+    displayResults(filteredResults);
 }
-
-
-    
 
 // 初始化页面
 init();

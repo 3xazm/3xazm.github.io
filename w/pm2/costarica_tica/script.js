@@ -1,5 +1,5 @@
-// 模拟数据（默认显示的所有记录）
 
+// 模拟数据（默认显示的所有记录）
 const lotteryData = [
     // { date: "2025-mm-dd", mediodia: "--", tarde: "--", noche: "--" },
     /*
